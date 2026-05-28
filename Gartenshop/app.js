@@ -59,6 +59,26 @@ const products = [
         imgHover: "Produktbilder/BesterOpa.png",
         multicolor: true, 
         description: "Ein persönliches und robustes Geschenk für den besten Opa der Welt." 
+    },
+    {
+        id: 7,
+        name: "Schild 'Chili'",
+        category: "garten",
+        price: 6.00,
+        img: "Produktbilder/Chili.png",
+        imgHover: "Produktbilder/Chili.png",
+        multicolor: true,
+        description: "Feuriges 3D‑Druck‑Steckschild für dein Chili‑Beet. Wetterfest und robust."
+    },
+    {
+        id: 8,
+        name: "Schild 'Erdbeere'",
+        category: "garten",
+        price: 6.00,
+        img: "Produktbilder/Erdbeere.png",
+        imgHover: "Produktbilder/Erdbeere.png",
+        multicolor: true,
+        description: "Süßes 3D‑Druck‑Steckschild für dein Erdbeer‑Beet. Ideal für Hobbygärtner."
     }
 ];
 
