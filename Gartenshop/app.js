@@ -65,7 +65,7 @@ const products = [
         name: "Schild 'Chili'",
         category: "garten",
         price: 6.00,
-        img: "Produktbilder/Chili.png",
+        img: "Produktbilder/Chili_im_Beet.png",
         imgHover: "Produktbilder/Chili.png",
         multicolor: true,
         description: "Feuriges 3D‑Druck‑Steckschild für dein Chili‑Beet. Wetterfest und robust."
@@ -75,11 +75,42 @@ const products = [
         name: "Schild 'Erdbeere'",
         category: "garten",
         price: 6.00,
-        img: "Produktbilder/Erdbeere.png",
+        img: "Produktbilder/Erdbeere_im_Beet.png",
         imgHover: "Produktbilder/Erdbeere.png",
         multicolor: true,
         description: "Süßes 3D‑Druck‑Steckschild für dein Erdbeer‑Beet. Ideal für Hobbygärtner."
+    },
+    {
+        id: 9,
+        name: "Schild 'Ouzo'",
+        category: "fun",
+        price: 9.00,
+        img: "Produktbilder/Ouzo_Bar.png",
+        imgHover: "Produktbilder/Ouzo.png",
+        multicolor: true,
+        description: "Erfrischendes Ouzo‑Schild für deine Party – im Bar‑Style präsentiert."
+    },
+    {
+        id: 10,
+        name: "Schild 'Helles'",
+        category: "fun",
+        price: 9.00,
+        img: "Produktbilder/Helles_Bar.png",
+        imgHover: "Produktbilder/Helles.png",
+        multicolor: true,
+        description: "Klassisches Helles‑Schild, perfekt für deine heimische Bar."
+    },
+    {
+        id: 11,
+        name: "Schild 'Petersilie'",
+        category: "garten",
+        price: 6.00,
+        img: "Produktbilder/Petersilie_im_Beet.png",
+        imgHover: "Produktbilder/Petersilie.png",
+        multicolor: true,
+        description: "Frisches 3D‑Druck‑Steckschild für dein Petersilien‑Beet. Ideal für Kräuterliebhaber."
     }
+
 ];
 
 // App State
