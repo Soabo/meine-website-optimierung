@@ -38,6 +38,7 @@ const products = [
         img: "Produktbilder/Aperol_Bar.png", 
         imgHover: "Produktbilder/Aperol.png",
         multicolor: true, 
+        width: "14,3 cm",
         description: "Das Highlight für deine nächste Sommerparty oder Heimbar." 
     },
     { 
@@ -78,6 +79,7 @@ const products = [
         img: "Produktbilder/Erdbeere_im_Beet.png",
         imgHover: "Produktbilder/Erdbeere.png",
         multicolor: true,
+        width: "12,2 cm",
         description: "Süßes 3D‑Druck‑Steckschild für dein Erdbeer‑Beet. Ideal für Hobbygärtner."
     },
     {
@@ -88,6 +90,7 @@ const products = [
         img: "Produktbilder/Ouzo_Bar.png",
         imgHover: "Produktbilder/Ouzo.png",
         multicolor: true,
+        width: "10,5 cm",
         description: "Erfrischendes Ouzo‑Schild für deine Party – im Bar‑Style präsentiert."
     },
     {
@@ -98,6 +101,7 @@ const products = [
         img: "Produktbilder/Helles_Bar.png",
         imgHover: "Produktbilder/Helles.png",
         multicolor: true,
+        width: "12,8 cm",
         description: "Klassisches Helles‑Schild, perfekt für deine heimische Bar."
     },
     {
@@ -108,6 +112,7 @@ const products = [
         img: "Produktbilder/Petersilie_im_Beet.png",
         imgHover: "Produktbilder/Petersilie.png",
         multicolor: true,
+        width: "14,7 cm",
         description: "Frisches 3D‑Druck‑Steckschild für dein Petersilien‑Beet. Ideal für Kräuterliebhaber."
     },
     {
@@ -118,6 +123,7 @@ const products = [
         img: "Produktbilder/Basilikum_im_Beet.png",
         imgHover: "Produktbilder/Basilikum.png",
         multicolor: true,
+        width: "15,6 cm",
         description: "Aromatisches 3D‑Druck‑Steckschild für deinen Basilikumtopf oder dein Kräuterbeet."
     },
     {
@@ -128,6 +134,7 @@ const products = [
         img: "Produktbilder/Zucchini_im_Beet.png",
         imgHover: "Produktbilder/Zucchini.png",
         multicolor: true,
+        width: "14,7 cm",
         description: "Robustes 3D‑Druck‑Steckschild für dein Zucchinibeet. Wetterfest und dekorativ."
     },
     {
@@ -138,6 +145,7 @@ const products = [
         img: "Produktbilder/OhHi_Deko.png",
         imgHover: "Produktbilder/OhHi.png",
         multicolor: true,
+        width: "20,0 cm",
         description: "Stilvoller Türhänger für deine Haustür, der Gästen ein freundliches 'Oh Hi' entgegenbringt."
     }
 ];
@@ -168,6 +176,7 @@ function renderProducts(filter = 'all') {
         card.innerHTML = `
             <div class="product-img">
                 ${product.multicolor ? '<span class="badge">Mehrfarbig</span>' : ''}
+                ${product.width ? `<span class="badge badge-width" style="right: auto; left: 12px; border-color: var(--text-muted); color: var(--text-main); font-size: 0.7rem; padding: 0.2rem 0.5rem;">${product.width}</span>` : ''}
                 <img src="${product.img}" alt="${product.name}" class="img-main" loading="lazy">
                 ${product.imgHover ? `<img src="${product.imgHover}" alt="${product.name}" class="img-hover" loading="lazy">` : ''}
             </div>
