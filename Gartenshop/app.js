@@ -69,6 +69,7 @@ const products = [
         img: "Produktbilder/Chili_im_Beet.png",
         imgHover: "Produktbilder/Chili.png",
         multicolor: true,
+        width: "8,7 cm",
         description: "Feuriges 3D‑Druck‑Steckschild für dein Chili‑Beet. Wetterfest und robust."
     },
     {
@@ -176,7 +177,7 @@ function renderProducts(filter = 'all') {
         card.innerHTML = `
             <div class="product-img">
                 ${product.multicolor ? '<span class="badge">Mehrfarbig</span>' : ''}
-                ${product.width ? `<span class="badge badge-width" style="right: auto; left: 12px; border-color: var(--text-muted); color: var(--text-main); font-size: 0.7rem; padding: 0.2rem 0.5rem;">${product.width}</span>` : ''}
+                ${product.width ? `<span class="badge badge-width" style="right: auto; left: 12px; border-color: var(--text-muted); color: var(--text-main); font-size: 0.7rem; padding: 0.2rem 0.5rem;">Breite ${product.width}</span>` : ''}
                 <img src="${product.img}" alt="${product.name}" class="img-main" loading="lazy">
                 ${product.imgHover ? `<img src="${product.imgHover}" alt="${product.name}" class="img-hover" loading="lazy">` : ''}
             </div>
