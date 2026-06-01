@@ -109,8 +109,27 @@ const products = [
         imgHover: "Produktbilder/Petersilie.png",
         multicolor: true,
         description: "Frisches 3D‑Druck‑Steckschild für dein Petersilien‑Beet. Ideal für Kräuterliebhaber."
+    },
+    {
+        id: 12,
+        name: "Schild 'Basilikum'",
+        category: "garten",
+        price: 6.00,
+        img: "Produktbilder/Basilikum_im_Beet.png",
+        imgHover: "Produktbilder/Basilikum.png",
+        multicolor: true,
+        description: "Aromatisches 3D‑Druck‑Steckschild für deinen Basilikumtopf oder dein Kräuterbeet."
+    },
+    {
+        id: 13,
+        name: "Schild 'Zucchini'",
+        category: "garten",
+        price: 6.00,
+        img: "Produktbilder/Zucchini_im_Beet.png",
+        imgHover: "Produktbilder/Zucchini.png",
+        multicolor: true,
+        description: "Robustes 3D‑Druck‑Steckschild für dein Zucchinibeet. Wetterfest und dekorativ."
     }
-
 ];
 
 // App State
