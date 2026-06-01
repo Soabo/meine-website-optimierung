@@ -8,6 +8,7 @@ const products = [
         img: "Produktbilder/Gurke_im_Beet.png", 
         imgHover: "Produktbilder/Gurke.png",
         multicolor: true, 
+        width: "11,6 cm",
         description: "Wetterfestes Steckschild für dein Gurkenbeet. Perfekt für Hobbygärtner." 
     },
     { 
@@ -18,6 +19,7 @@ const products = [
         img: "Produktbilder/Paprika_im_Beet.png", 
         imgHover: "Produktbilder/Paprika.png",
         multicolor: true, 
+        width: "13,9 cm",
         description: "Klares Design, robuste Textur. Ideal für die Paprikazucht." 
     },
     { 
@@ -28,6 +30,7 @@ const products = [
         img: "Produktbilder/Tomate_im_Beet.png", 
         imgHover: "Produktbilder/Tomate.png",
         multicolor: true, 
+        width: "11,4 cm",
         description: "Klares Design, robuste Textur. Ideal für die Tomatenzucht." 
     },
     { 
@@ -49,6 +52,7 @@ const products = [
         img: "Produktbilder/BesteOma_Deko.png", 
         imgHover: "Produktbilder/BesteOma.png",
         multicolor: true, 
+        width: "11,9 cm",
         description: "Ein persönliches und robustes Geschenk für die beste Oma der Welt." 
     },
     { 
@@ -59,6 +63,7 @@ const products = [
         img: "Produktbilder/BesterOpa_Deko.png", 
         imgHover: "Produktbilder/BesterOpa.png",
         multicolor: true, 
+        width: "11,0 cm",
         description: "Ein persönliches und robustes Geschenk für den besten Opa der Welt." 
     },
     {
