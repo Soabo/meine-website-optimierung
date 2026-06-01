@@ -129,6 +129,16 @@ const products = [
         imgHover: "Produktbilder/Zucchini.png",
         multicolor: true,
         description: "Robustes 3D‑Druck‑Steckschild für dein Zucchinibeet. Wetterfest und dekorativ."
+    },
+    {
+        id: 14,
+        name: "Türhänger 'Oh Hi'",
+        category: "fun",
+        price: 9.00,
+        img: "Produktbilder/OhHi_Deko.png",
+        imgHover: "Produktbilder/OhHi.png",
+        multicolor: true,
+        description: "Stilvoller Türhänger für deine Haustür, der Gästen ein freundliches 'Oh Hi' entgegenbringt."
     }
 ];
 
