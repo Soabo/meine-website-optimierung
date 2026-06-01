@@ -99,6 +99,46 @@
         </div>
     </section>
 
+    <!-- Custom Idea Request Section -->
+    <section id="idea-request" class="idea-request-section" style="padding: 4rem 5%; display: flex; justify-content: center; background: rgba(30, 30, 30, 0.3); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);">
+        <div class="configurator-card" style="max-width: 700px;">
+            <h2>Eigene Idee verwirklichen</h2>
+            <p>Du hast eine Skizze, eine Grafik oder eine genaue Vorstellung für ein Schild oder ein ganz anderes 3D-Druck-Projekt? Beschreibe uns deine Idee und lade optional eine Bilddatei hoch – wir prüfen die Machbarkeit und senden dir ein unverbindliches Angebot!</p>
+            <form id="idea-form" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <div class="form-group">
+                        <label for="idea-name">Dein Name</label>
+                        <input type="text" id="idea-name" placeholder="z.B. Max Mustermann" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="idea-email">Deine E-Mail-Adresse</label>
+                        <input type="email" id="idea-email" placeholder="z.B. max@beispiel.de" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="idea-description">Projektbeschreibung / Deine Idee</label>
+                    <textarea id="idea-description" rows="5" placeholder="Beschreibe deine Idee so detailliert wie möglich (Größe, Wunschfarben, Verwendungszweck...)" style="width: 100%; padding: 1rem; background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-main); border-radius: 8px; font-family: inherit; font-size: 1rem; transition: var(--transition); resize: vertical; min-height: 120px;" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="idea-file">Skizze, Bild oder 3D-Modell hochladen (optional)</label>
+                    <div class="file-upload-wrapper" style="border: 2px dashed var(--border-color); padding: 2rem; text-align: center; border-radius: 8px; cursor: pointer; transition: var(--transition); position: relative; background: var(--bg-color);">
+                        <input type="file" id="idea-file" accept="image/*,.pdf,.stl,.obj" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;">
+                        <span id="file-upload-text" style="color: var(--text-muted); font-size: 0.9rem;">
+                            Datei hierher ziehen oder <strong style="color: var(--accent-orange);">durchsuchen</strong><br>
+                            <span style="font-size: 0.75rem;">(Erlaubt: PNG, JPG, PDF, STL, OBJ | max. 10MB)</span>
+                        </span>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">Projektanfrage senden</button>
+            </form>
+            <div id="idea-success-msg" style="display: none; text-align: center; padding: 2rem; border: 1px solid var(--accent-green); border-radius: 8px; background: rgba(57, 255, 20, 0.05); color: var(--text-main); margin-top: 1.5rem;">
+                <h3 style="color: var(--accent-green); margin-bottom: 0.5rem;">Vielen Dank für deine Anfrage!</h3>
+                <p>Wir haben deine Projektbeschreibung erhalten. Falls du eine Datei angehängt hast, wird diese als E-Mail-Anhang vorbereitet. Klicke unten, um die Anfrage per E-Mail abzuschicken.</p>
+                <a id="idea-mailto-btn" class="btn btn-secondary" style="display: inline-block; margin-top: 1rem; text-decoration: none;">E-Mail jetzt senden ✉️</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">

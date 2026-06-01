@@ -313,6 +313,53 @@ customForm.addEventListener('submit', (e) => {
     customForm.reset();
 });
 
+// Custom Idea Form Handler
+const ideaForm = document.getElementById('idea-form');
+const ideaFile = document.getElementById('idea-file');
+const fileUploadText = document.getElementById('file-upload-text');
+const ideaSuccessMsg = document.getElementById('idea-success-msg');
+const ideaMailtoBtn = document.getElementById('idea-mailto-btn');
+
+if (ideaFile) {
+    ideaFile.addEventListener('change', (e) => {
+        if (e.target.files.length > 0) {
+            fileUploadText.innerHTML = `Ausgewählte Datei: <strong style="color: var(--accent-orange);">${e.target.files[0].name}</strong><br><span style="font-size: 0.75rem;">(Klicke erneut zum Ändern)</span>`;
+        } else {
+            fileUploadText.innerHTML = `Datei hierher ziehen oder <strong style="color: var(--accent-orange);">durchsuchen</strong><br><span style="font-size: 0.75rem;">(Erlaubt: PNG, JPG, PDF, STL, OBJ | max. 10MB)</span>`;
+        }
+    });
+}
+
+if (ideaForm) {
+    ideaForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('idea-name').value;
+        const email = document.getElementById('idea-email').value;
+        const desc = document.getElementById('idea-description').value;
+        const file = ideaFile.files[0];
+
+        const recipient = 'christiandorn83@googlemail.com';
+        const subject = encodeURIComponent(`Anfrage für individuellen 3D-Druck von ${name}`);
+        
+        let bodyText = `Hallo Christian,\n\nich möchte eine eigene Idee als 3D-Druck umsetzen lassen.\n\n`;
+        bodyText += `Name: ${name}\n`;
+        bodyText += `E-Mail: ${email}\n\n`;
+        bodyText += `Projektbeschreibung:\n${desc}\n\n`;
+        
+        if (file) {
+            bodyText += `[HINWEIS] Ich habe die Datei "${file.name}" angehängt. Bitte ziehe diese Datei in das E-Mail-Fenster deines Clients (oder antworte auf diese Mail, um sie anzuhängen), da Web-Formulare keine direkten Dateianhänge über Standard-Mailto-Links mitsenden können.\n\n`;
+        }
+        
+        bodyText += `Viele Grüße\n${name}`;
+        const body = encodeURIComponent(bodyText);
+
+        ideaMailtoBtn.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+        
+        ideaForm.style.display = 'none';
+        ideaSuccessMsg.style.display = 'block';
+    });
+}
+
 // Initialisierung
 renderProducts();
 updateCart();
