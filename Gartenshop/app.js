@@ -1,10 +1,13 @@
+// Konfiguration
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xojoavva'; // Ersetze YOUR_FORM_ID_HERE mit deiner tatsächlichen Formspree-ID
+
 // Mock-Daten als JSON-Objekte im Code (einfach austauschbar)
 const products = [
     { 
         id: 1, 
         name: "Schild 'Gurke'", 
         category: "garten", 
-        price: 6.00, 
+        price: 5.00, 
         img: "Produktbilder/Gurke_im_Beet.png", 
         imgHover: "Produktbilder/Gurke.png",
         multicolor: true, 
@@ -15,7 +18,7 @@ const products = [
         id: 2, 
         name: "Schild 'Paprika'", 
         category: "garten", 
-        price: 6.00, 
+        price: 5.00, 
         img: "Produktbilder/Paprika_im_Beet.png", 
         imgHover: "Produktbilder/Paprika.png",
         multicolor: true, 
@@ -26,7 +29,7 @@ const products = [
         id: 3, 
         name: "Schild 'Tomate'", 
         category: "garten", 
-        price: 6.00, 
+        price: 5.00, 
         img: "Produktbilder/Tomate_im_Beet.png", 
         imgHover: "Produktbilder/Tomate.png",
         multicolor: true, 
@@ -70,7 +73,7 @@ const products = [
         id: 7,
         name: "Schild 'Chili'",
         category: "garten",
-        price: 6.00,
+        price: 5.00,
         img: "Produktbilder/Chili_im_Beet.png",
         imgHover: "Produktbilder/Chili.png",
         multicolor: true,
@@ -81,7 +84,7 @@ const products = [
         id: 8,
         name: "Schild 'Erdbeere'",
         category: "garten",
-        price: 6.00,
+        price: 5.00,
         img: "Produktbilder/Erdbeere_im_Beet.png",
         imgHover: "Produktbilder/Erdbeere.png",
         multicolor: true,
@@ -114,7 +117,7 @@ const products = [
         id: 11,
         name: "Schild 'Petersilie'",
         category: "garten",
-        price: 6.00,
+        price: 5.00,
         img: "Produktbilder/Petersilie_im_Beet.png",
         imgHover: "Produktbilder/Petersilie.png",
         multicolor: true,
@@ -125,7 +128,7 @@ const products = [
         id: 12,
         name: "Schild 'Basilikum'",
         category: "garten",
-        price: 6.00,
+        price: 5.00,
         img: "Produktbilder/Basilikum_im_Beet.png",
         imgHover: "Produktbilder/Basilikum.png",
         multicolor: true,
@@ -136,7 +139,7 @@ const products = [
         id: 13,
         name: "Schild 'Zucchini'",
         category: "garten",
-        price: 6.00,
+        price: 5.00,
         img: "Produktbilder/Zucchini_im_Beet.png",
         imgHover: "Produktbilder/Zucchini.png",
         multicolor: true,
@@ -170,6 +173,11 @@ const cartItemsContainer = document.getElementById('cart-items');
 const cartCount = document.getElementById('cart-count');
 const totalPriceEl = document.getElementById('total-price');
 const customForm = document.getElementById('custom-form');
+const checkoutBtn = document.getElementById('checkout-btn');
+const cartContentView = document.getElementById('cart-content-view');
+const checkoutFormView = document.getElementById('checkout-form-view');
+const backToCartBtn = document.getElementById('back-to-cart');
+const checkoutFormReal = document.getElementById('checkout-form');
 
 // Produkte Rendern
 function renderProducts(filter = 'all') {
@@ -280,6 +288,8 @@ function openCart() {
     cartSidebar.classList.add('open');
     cartOverlay.classList.add('show');
     document.body.style.overflow = 'hidden';
+    cartContentView.style.display = 'flex';
+    checkoutFormView.style.display = 'none';
 }
 
 function closeCart() {
@@ -291,6 +301,99 @@ function closeCart() {
 cartBtn.addEventListener('click', openCart);
 closeCartBtn.addEventListener('click', closeCart);
 cartOverlay.addEventListener('click', closeCart);
+
+// Bestellanfrage per E-Mail absenden
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', () => {
+        if (cart.length === 0) {
+            alert('Dein Warenkorb ist leer.');
+            return;
+        }
+        cartContentView.style.display = 'none';
+        checkoutFormView.style.display = 'flex';
+    });
+}
+
+if (backToCartBtn) {
+    backToCartBtn.addEventListener('click', () => {
+        cartContentView.style.display = 'flex';
+        checkoutFormView.style.display = 'none';
+    });
+}
+
+if (checkoutFormReal) {
+    checkoutFormReal.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        if (cart.length === 0) {
+            alert('Dein Warenkorb ist leer.');
+            return;
+        }
+        
+        const name = document.getElementById('checkout-name').value;
+        const email = document.getElementById('checkout-email').value;
+        const address = document.getElementById('checkout-address').value;
+        
+        let cartDetails = '';
+        let total = 0;
+        cart.forEach(item => {
+            const itemPrice = item.price * item.quantity;
+            total += itemPrice;
+            if (item.type === 'custom') {
+                cartDetails += `- ${item.quantity}x ${item.name} (Einzelpreis: ${item.price.toFixed(2).replace('.', ',')} €) = ${itemPrice.toFixed(2).replace('.', ',')} €\n`;
+                cartDetails += `  Text 1: "${item.text1}" (${item.color1})\n`;
+                cartDetails += `  Text 2: "${item.text2}" (${item.color2})\n`;
+            } else {
+                cartDetails += `- ${item.quantity}x ${item.name} (Einzelpreis: ${item.price.toFixed(2).replace('.', ',')} €) = ${itemPrice.toFixed(2).replace('.', ',')} €\n`;
+            }
+        });
+        
+        const submitBtn = checkoutFormReal.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Wird gesendet...';
+        
+        fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                Name: name,
+                Email: email,
+                Adresse: address,
+                Warenkorb: cartDetails,
+                Gesamtsumme: `${total.toFixed(2).replace('.', ',')} €`
+            })
+        })
+        .then(response => {
+            if (response.ok) {
+                alert('Vielen Dank! Deine Bestellanfrage wurde erfolgreich an uns übermittelt.');
+                cart = [];
+                updateCart();
+                closeCart();
+                checkoutFormReal.reset();
+            } else {
+                return response.json().then(data => {
+                    if (data && Object.hasOwnProperty.call(data, 'errors')) {
+                        alert(data.errors.map(error => error.message).join(', '));
+                    } else {
+                        alert('Hoppla! Beim Senden deiner Anfrage ist ein Problem aufgetreten.');
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            alert('Hoppla! Beim Senden deiner Anfrage ist ein Problem aufgetreten.');
+            console.error(error);
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        });
+    });
+}
 
 // Custom Konfigurator Formular
 customForm.addEventListener('submit', (e) => {

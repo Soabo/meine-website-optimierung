@@ -164,12 +164,41 @@
             <h3>Warenkorb</h3>
             <button id="close-cart" class="close-btn">&times;</button>
         </div>
-        <div id="cart-items" class="cart-items">
-            <!-- Cart items injected via JS -->
+        
+        <!-- Cart Contents View -->
+        <div id="cart-content-view" style="display: flex; flex-direction: column; height: calc(100% - 60px);">
+            <div id="cart-items" class="cart-items" style="flex: 1; overflow-y: auto;">
+                <!-- Cart items injected via JS -->
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total">Summe: <span id="total-price">0,00 €</span></div>
+                <button id="checkout-btn" class="btn btn-primary checkout-btn">Bestellanfrage</button>
+            </div>
         </div>
-        <div class="cart-footer">
-            <div class="cart-total">Summe: <span id="total-price">0,00 €</span></div>
-            <button class="btn btn-primary checkout-btn">Zur Kasse</button>
+        
+        <!-- Checkout Form View (hidden by default) -->
+        <div id="checkout-form-view" style="display: none; flex-direction: column; height: calc(100% - 60px); padding: 1.5rem; justify-content: space-between; overflow-y: auto;">
+            <div>
+                <h4 style="margin-bottom: 1.5rem; font-size: 1.2rem; color: var(--accent-orange);">Bestellanfrage senden</h4>
+                <form id="checkout-form" style="display: flex; flex-direction: column; gap: 1.2rem;">
+                    <div class="form-group">
+                        <label for="checkout-name" style="display: block; margin-bottom: 0.4rem; font-size: 0.85rem; color: var(--text-muted);">Name</label>
+                        <input type="text" id="checkout-name" style="width: 100%; padding: 0.8rem; background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-main); border-radius: 8px;" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout-email" style="display: block; margin-bottom: 0.4rem; font-size: 0.85rem; color: var(--text-muted);">E-Mail-Adresse</label>
+                        <input type="email" id="checkout-email" style="width: 100%; padding: 0.8rem; background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-main); border-radius: 8px;" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="checkout-address" style="display: block; margin-bottom: 0.4rem; font-size: 0.85rem; color: var(--text-muted);">Lieferadresse</label>
+                        <textarea id="checkout-address" rows="3" placeholder="Straße, Hausnr., PLZ, Ort" style="width: 100%; padding: 0.8rem; background: var(--bg-color); border: 1px solid var(--border-color); color: var(--text-main); border-radius: 8px; font-family: inherit; resize: vertical;" required></textarea>
+                    </div>
+                    <div style="display: flex; gap: 0.8rem; margin-top: 1rem;">
+                        <button type="button" id="back-to-cart" class="btn btn-secondary" style="flex: 1; padding: 0.8rem;">Zurück</button>
+                        <button type="submit" class="btn btn-primary" style="flex: 1.5; padding: 0.8rem;">Absenden</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     <div id="cart-overlay" class="cart-overlay"></div>
