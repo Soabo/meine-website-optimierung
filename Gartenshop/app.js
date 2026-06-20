@@ -421,7 +421,6 @@ const ideaForm = document.getElementById('idea-form');
 const ideaFile = document.getElementById('idea-file');
 const fileUploadText = document.getElementById('file-upload-text');
 const ideaSuccessMsg = document.getElementById('idea-success-msg');
-const ideaMailtoBtn = document.getElementById('idea-mailto-btn');
 
 if (ideaFile) {
     ideaFile.addEventListener('change', (e) => {
@@ -441,25 +440,48 @@ if (ideaForm) {
         const desc = document.getElementById('idea-description').value;
         const file = ideaFile.files[0];
 
-        const recipient = 'christiandorn83@googlemail.com';
-        const subject = encodeURIComponent(`Anfrage für individuellen 3D-Druck von ${name}`);
-        
-        let bodyText = `Hallo Christian,\n\nich möchte eine eigene Idee als 3D-Druck umsetzen lassen.\n\n`;
-        bodyText += `Name: ${name}\n`;
-        bodyText += `E-Mail: ${email}\n\n`;
-        bodyText += `Projektbeschreibung:\n${desc}\n\n`;
-        
-        if (file) {
-            bodyText += `[HINWEIS] Ich habe die Datei "${file.name}" angehängt. Bitte ziehe diese Datei in das E-Mail-Fenster deines Clients (oder antworte auf diese Mail, um sie anzuhängen), da Web-Formulare keine direkten Dateianhänge über Standard-Mailto-Links mitsenden können.\n\n`;
-        }
-        
-        bodyText += `Viele Grüße\n${name}`;
-        const body = encodeURIComponent(bodyText);
+        const submitBtn = ideaForm.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.textContent;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Wird gesendet...';
 
-        ideaMailtoBtn.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-        
-        ideaForm.style.display = 'none';
-        ideaSuccessMsg.style.display = 'block';
+        const formData = new FormData();
+        formData.append('Name', name);
+        formData.append('Email', email);
+        formData.append('Projektbeschreibung', desc);
+        if (file) {
+            formData.append('Datei', file);
+        }
+
+        fetch(FORMSPREE_ENDPOINT, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                ideaForm.style.display = 'none';
+                ideaSuccessMsg.style.display = 'block';
+            } else {
+                return response.json().then(data => {
+                    if (data && Object.hasOwnProperty.call(data, 'errors')) {
+                        alert(data.errors.map(error => error.message).join(', '));
+                    } else {
+                        alert('Hoppla! Beim Senden deiner Idee ist ein Problem aufgetreten.');
+                    }
+                });
+            }
+        })
+        .catch(error => {
+            alert('Hoppla! Beim Senden deiner Idee ist ein Problem aufgetreten.');
+            console.error(error);
+        })
+        .finally(() => {
+            submitBtn.disabled = false;
+            submitBtn.textContent = originalBtnText;
+        });
     });
 }
 
